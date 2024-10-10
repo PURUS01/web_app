@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('created_by')->nullable()->references('id')->on('users');
-            $table->foreignId('business_id')->nullable()->references('id')->on('businesses');
-            $table->foreignId('role_id')->default(2)->references('id')->on('roles');
+        Schema::table('payments', function (Blueprint $table) {
+            $table->dropColumn('payment_type');
+            $table->foreignId('payment_type_id')->references('id')->on('payment_types');
         });
     }
 
@@ -23,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('payments', function (Blueprint $table) {
             //
         });
     }
